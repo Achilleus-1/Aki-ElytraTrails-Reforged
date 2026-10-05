@@ -1,0 +1,71 @@
+package dbrighthd.elytratrails.rendering;
+
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.packs.resources.ResourceManager;
+
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+
+
+public final class TrailTextureRegistry {
+    private TrailTextureRegistry() {
+    }
+
+    private static volatile Set<String> AVAILABLE = Collections.emptySet();
+
+
+    public static void reloadNow(ResourceManager manager) {
+        Map<ResourceLocation, ?> found = manager.listResources("textures/trails", id -> id.getPath().endsWith(".png"));
+
+        Set<String> out = new HashSet<>();
+        for (ResourceLocation id : found.keySet()) {
+            if (!"elytratrails".equals(id.getNamespace())) continue;
+
+            String path = id.getPath(); // textures/trails/<name>.png
+            if (!path.startsWith("textures/trails/") || !path.endsWith(".png")) continue;
+
+            String name = path.substring("textures/trails/".length(), path.length() - ".png".length());
+            name = normalizeName(name);
+            if (!name.isEmpty()) out.add(name);
+        }
+
+        AVAILABLE = Collections.unmodifiableSet(out);
+    }
+
+
+    public static ResourceLocation resolveTextureOrNull(String trailTextureName) {
+        String name = normalizeFromUserString(trailTextureName);
+        if (name == null) return null;
+
+        if (!AVAILABLE.contains(name)) return null;
+
+        return ResourceLocation.tryParse("elytratrails:textures/trails/" + name + ".png");
+    }
+
+    private static String normalizeFromUserString(String in) {
+        if (in == null) return null;
+        String s = in.trim();
+        if (s.isEmpty()) return null;
+
+        if (s.contains(":")) {
+            ResourceLocation id = ResourceLocation.tryParse(s);
+            if (id == null) return null;
+            s = id.getPath();
+        }
+
+        s = normalizeName(s);
+        return s.isEmpty() ? null : s;
+    }
+
+    static String normalizeName(String s) {
+        String name = s.toLowerCase();
+        name = name.replaceAll("[^a-z0-9_\\-./]", "");
+        name = name.replace("..", "");
+        name = name.replace("\\", "/");
+        while (name.startsWith("/")) name = name.substring(1);
+        while (name.endsWith("/")) name = name.substring(0, name.length() - 1);
+        return name;
+    }
+}

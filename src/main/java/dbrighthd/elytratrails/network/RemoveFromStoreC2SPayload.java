@@ -1,0 +1,25 @@
+package dbrighthd.elytratrails.network;
+
+import dbrighthd.elytratrails.ElytraTrails;
+import net.minecraft.network.RegistryFriendlyByteBuf;
+import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
+import net.minecraft.resources.ResourceLocation;
+
+import org.jetbrains.annotations.NotNull;
+
+public record RemoveFromStoreC2SPayload() implements CustomPacketPayload {
+    public static final ResourceLocation ID_RAW =
+            ResourceLocation.fromNamespaceAndPath(ElytraTrails.MOD_ID, "remove_from_store_c2s");
+
+    public static final Type<@NotNull RemoveFromStoreC2SPayload> ID =
+            new Type<>(ID_RAW);
+
+    // No bytes written/read.
+    public static final StreamCodec<RegistryFriendlyByteBuf, RemoveFromStoreC2SPayload> CODEC =
+            StreamCodec.unit(new RemoveFromStoreC2SPayload());
+    @Override
+    public @NotNull Type<? extends @NotNull CustomPacketPayload> type() {
+        return ID;
+    }
+}

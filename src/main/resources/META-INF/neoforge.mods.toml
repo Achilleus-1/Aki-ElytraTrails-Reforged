@@ -1,0 +1,41 @@
+modLoader="javafml"
+loaderVersion="${loader_version_range}"
+license="${mod_license}"
+issueTrackerURL="https://github.com/Achilleus-1/Akis-ElytraTrailsReforged/issues"
+
+[[mods]]
+modId="${mod_id}"
+version="${mod_version}"
+displayName="${mod_name}"
+displayURL="https://linktr.ee/achilleus_"
+authors="${mod_authors}"
+credits="dbrighthd, original Elytra Contrails"
+logoFile="assets/achilleus/achilleus-logo-white.png"
+description='''Product of Achilleus.
+https://linktr.ee/achilleus_
+
+Pretty trails when you are flying! NeoForge 1.21.1 port, maintenance, and rebranding by Achilleus, based on Elytra Contrails by dbrighthd.'''
+
+[[dependencies.${mod_id}]]
+modId="neoforge"
+type="required"
+versionRange="${neo_version_range}"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.${mod_id}]]
+modId="minecraft"
+type="required"
+versionRange="${minecraft_version_range}"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.${mod_id}]]
+modId="cloth_config"
+type="optional"
+versionRange="[15.0.140,)"
+ordering="AFTER"
+side="CLIENT"
+
+[[mixins]]
+config="elytratrails.client.mixins.json"
