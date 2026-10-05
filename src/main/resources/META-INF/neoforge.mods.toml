@@ -9,12 +9,12 @@ version="${mod_version}"
 displayName="${mod_name}"
 displayURL="https://linktr.ee/achilleus_"
 authors="${mod_authors}"
-credits="dbrighthd, original Elytra Contrails"
+credits="Ported from Elytra Contrails by dbrighthd."
 logoFile="assets/achilleus/achilleus-logo-white.png"
 description='''Product of Achilleus.
 https://linktr.ee/achilleus_
 
-Pretty trails when you are flying! NeoForge 1.21.1 port, maintenance, and rebranding by Achilleus, based on Elytra Contrails by dbrighthd.'''
+Elytra trails, presets, wingtip settings, twirls, and optional arrow and allay trails. Created and maintained by Achilleus for NeoForge 1.21.1.'''
 
 [[dependencies.${mod_id}]]
 modId="neoforge"
