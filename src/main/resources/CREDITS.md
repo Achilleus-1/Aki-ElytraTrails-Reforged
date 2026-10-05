@@ -8,4 +8,4 @@ Copyright (c) 2026 Achilleus (Achilleus-1), port and branding modifications.
 
 Ported from [Elytra Contrails](https://github.com/dbrighthd/elytratrails) by dbrighthd.
 
-Licensed under **MPL-2.0**; copyright and license notices are included in [LICENSE](LICENSE) and packaged resources. Source is available in [this repository](https://github.com/Achilleus-1/Akis-ElytraTrailsReforged).
+Licensed under **MPL-2.0**; copyright and license notices are included in [LICENSE](LICENSE) and packaged resources. Source is available in [this repository](https://github.com/Achilleus-1/Aki-ElytraTrails-Reforged).
